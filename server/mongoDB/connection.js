@@ -1,5 +1,5 @@
 const mongoose=require('mongoose')
-const url="mongodb+srv://blogging:86869391ts@cluster0.kvfdw0c.mongodb.net/?retryWrites=true&w=majority"
+const url="mongodb://127.0.0.1:27017/tits"
 const mongoConnection=()=>{
   try {
     mongoose.connect(url,{useUnifiedTopology:true,useNewUrlParser:true})

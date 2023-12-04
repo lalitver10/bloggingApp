@@ -18,7 +18,7 @@ const corsConfig = {
   origin: true,
 };
 // const jwtSecret = 'secret123';
-const PORT=process.env.PORT || 8000
+const PORT=process.env.PORT || 9000
 app.use(cookieParser())
 app.use(bodyParser.json({extended:true,limit:"50mb"}))
 app.use(bodyParser.urlencoded({extended:true,limit:"50mb",parameterLimit:50000}))

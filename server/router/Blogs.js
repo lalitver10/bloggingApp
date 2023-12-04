@@ -1,11 +1,11 @@
 const express = require("express");
 const Blog = require("../models/Blog.js");
-const { find, findById } = require("../models/user.js");
+const { find, findById } = require("../models/User.js");
 const router = express.Router();
 const text = require("html-to-text");
 const request = require("request");
-const Users = require("../models/user.js");
-const monthNames = [
+const Users = require("../models/User.js");
+const monthNames =[
   "Jan",
   "Feb",
   "Mar",
@@ -56,9 +56,12 @@ router.get("/blogs", async (req, res) => {
       res.json(e);
     });
   } catch (error) {
+    console.log("ERROR--------------------");
     console.log(error);
   }
 });
+
+
 router.get("/blog/:id", async (req, res) => {
   const { id } = req.params;
   try {
@@ -124,28 +127,27 @@ router.get("/blogsByAuthorId/:id", async (req, res) => {
 });
 router.get("/categorycount", async (req, res) => {
   try {
-    const blockchain = await Blog.find({ category: "Blockchain" });
+    const travel = await Blog.find({ category: "Travel" });
     const fashion = await Blog.find({ category: "Fashion" });
     const technology = await Blog.find({ category: "Technology" });
     const Business = await Blog.find({ category: "Business" });
     const health = await Blog.find({ category: "Health" });
-    const fitness = await Blog.find({ category: "Fitness" });
-    const javascript = await Blog.find({ category: "javascript" });
+    console.log("Travel",technology)
     res.json({
-      blockchain: blockchain.length,
+      travel: travel.length,
       fashion: fashion.length,
       technology: technology.length,
       business: Business.length,
       health: health.length,
-      fitness: fitness.length,
-      javascript: javascript.length,
     });
   } catch (error) {
     res.json(error);
   }
 });
-router.get("/tag/:id", async (req, res) => {
+router.get("/tag/: ", async (req, res) => {
   const { id } = req.params;
+ console.log("************************************")
+ // console.log(id)
   const blogs = await Blog.find({ category: id });
   //  res.send(blogs)
   if (blogs) {
@@ -153,6 +155,17 @@ router.get("/tag/:id", async (req, res) => {
   } else {
     res.json({ message: "No Blogs Available" });
   }
+});
+//work here
+router.get("/blogbyCategory", async (req, res) => {
+  console.log("*****************************************************")
+   const travel = await Blog.find({ category: "Technology" });
+   if (travel) {
+    console.log(travel.length)
+     res.json({ blogs: travel });
+   } else {
+     res.json({ message: "No Blogs Available" });
+   }
 });
 
 router.get("/blogscount", (req, res) => {
@@ -162,7 +175,7 @@ router.get("/blogscount", (req, res) => {
     if (err) res.send(err);
 
     res.json({ count: count }); // return return the count in JSON format
-    // console.log(count)
+     console.log(count)
   });
 });
 router.get("/search/title?", async (req, res) => {

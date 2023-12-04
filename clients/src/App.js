@@ -31,24 +31,21 @@ function App() {
       <Routes>
         <Route exact path='/login' element={<Login/>}/>
         <Route exact path='/register' element={<Register/>}/>
-
         <Route exact path='/' element={<Home/>}/>
-        {/* <Route element={<Profile/>}/> */}
         <Route  path='/blog/:id' element={<Blog/>}/>
-        
         <Route exact path='/navbar' element={<Navbar/>}/>
         <Route exact path='/edit/:id' element={<EditProfile/>}/>
         <Route exact path='/profile/:id' element={<Profile/>}/>
         <Route exact path='/tag/:id' element={<Tag/>}/>
-<Route path='/search' element={<Search/>}/>
-<Route path='/notifications' element={<Pending/>}/>
-<Route exact path='/bookmarks' element={<Bookmark/>}/>
-<Route exact path='/write' element={<Write/>}/>
-<Route exact path='/share' element={<Share/>}/>
+        <Route path='/search' element={<Search/>}/>
+        <Route path='/notifications' element={<Pending/>}/>
+        <Route exact path='/bookmarks' element={<Bookmark/>}/>
+        <Route exact path='/write' element={<Write/>}/>
+        <Route exact path='/share' element={<Share/>}/>
 
 
 
-<Route path='*' element={<Error/>}/>
+    <Route path='*' element={<Error/>}/>
       </Routes>
       {/* <Footer/> */}
     </Router>

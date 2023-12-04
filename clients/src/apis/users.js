@@ -1,5 +1,5 @@
 import axios from "axios";
-const url = "http://localhost:8000";
+const url = "http://localhost:9000";
 export const registerUser = async (body) => {
   try {
     return await axios.post(`${url}/register`, body);

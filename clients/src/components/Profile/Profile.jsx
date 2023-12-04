@@ -61,7 +61,7 @@ function Profile() {
   }
   const handleClose2 = () => setFollowersOpen(false)
   const handleClose = () => setOpen(false);
-  const url = "http://localhost:8000"
+  const url = "http://localhost:9000"
   const pageRoute = useNavigate()
   const { id } = useParams()
   const userId = loginData._id
@@ -76,9 +76,6 @@ function Profile() {
       setUserBlogsExist(true)
       setUserBlogs(res.data.Blogs)
       setLoading(false)
-
-      console.log(userBlogs)
-
     }
     else {
       setUserBlogsExist(false)
@@ -163,6 +160,7 @@ function Profile() {
   return (
     <>
       <Navbar />
+      
       <div>
         <Modal
           open={open}
@@ -258,7 +256,9 @@ function Profile() {
 
           </Box>
         </Modal>
+      
       </div>
+      
       <div style={{ display: loading ? "block" : "none" }} className='loading-animation'>
         <div className='loading-div'>
           {/* <lottie-player src="https://lottie.host/ab4067ea-52f5-4650-a706-985b58653932/KQJxSKXJu7.json" background="transparent" speed="1" style={{ width: "100px", height: "100px" }} loop autoplay></lottie-player> */}
@@ -271,6 +271,7 @@ function Profile() {
           {/* <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_byi5mrjr.json" background="transparent" speed="1" style={{ width: "70px", height: "70px" }} loop autoplay></lottie-player> */}
         </div>
       </div>
+     
       <div style={{ display: loading ? "none" : "block" }} className='profile-container'>
         <div className='profile-section'>
           <button style={{ userSelect: "none" }}>

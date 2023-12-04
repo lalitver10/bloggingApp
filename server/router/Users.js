@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Users = require("../models/user.js");
+const Users = require("../models/User.js");
 const mongoose = require("mongoose");
 // const user = require('../models/user.js');
 var ObjectId = mongoose.Types.ObjectId;
@@ -19,9 +19,32 @@ router.get("/userById/:id", (req, res) => {
   const { id } = req.params;
   Users.findById({ _id: id }, (err, e) => {
     if (err) res.json({ message: err });
+    console.log(e.username);
     res.json({ success: e });
   });
 });
+//Work here================================================
+
+router.get("/popularusers", (req, res) => {
+  try {
+    Users.find((err, e) => {
+      if (err) console.log(err);
+      //res.json({ users: e });
+      let popuser=[];
+      for(let i=0;i<e.length;i++){
+              const userobj= e[i]
+            if(userobj.followers.length>=1) popuser.push({"id":userobj._id,"username":userobj.username})
+      }
+    res.send(popuser)
+    });
+  } catch (error) {
+    console.log(error);
+    res.send(error);
+  }
+});
+
+
+
 router.patch("/updateUser/:id", async (req, res) => {
   const { id } = req.params;
   Users.findByIdAndUpdate(id, { $set: req.body }, (err, e) => {

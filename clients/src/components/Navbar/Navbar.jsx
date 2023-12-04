@@ -8,7 +8,7 @@ import { IconContext } from 'react-icons';
 import { ImCross } from "react-icons/im"
 import image from "../../assets/test.jpg"
 import { LoginContext } from '../../contextProvider/Context';
-import logo from "../../assets/travelbrain-logo.svg"
+import logo from "../../assets/site_logo.png"
 import defaultimage from "../../assets/defaultprofile.png"
 import axios from "axios"
 function Navbar(props) {
@@ -19,7 +19,7 @@ function Navbar(props) {
   const showSidebar = () => setSidebar(!sidebar);
   const logout = async () => {
     let token = localStorage.getItem("JWTFINALTOKEN")
-    const res = await axios.get("http://localhost:8000/logout", { headers: { "Authorization": token } })
+    const res = await axios.get("http://localhost:9000/logout", { headers: { "Authorization": token } })
     if (res.data.status === 201) {
       localStorage.removeItem("JWTFINALTOKEN")
 
@@ -30,7 +30,7 @@ function Navbar(props) {
   }
   const homeValid = async () => {
     let token = localStorage.getItem("JWTFINALTOKEN")
-    const res = await axios.get("http://localhost:8000/validuser", { headers: { "Authorization": token } })
+    const res = await axios.get("http://localhost:9000/validuser", { headers: { "Authorization": token } })
 
     if (res.data.status === 401 || !res.data.status) {
       pageRoute('/login')

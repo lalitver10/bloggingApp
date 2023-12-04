@@ -12,17 +12,17 @@ import { useNavigate } from 'react-router-dom'
 import loadingAnimation from "../../assets/loading.gif"
 import axios from "axios"
 import Navbar from '../Navbar/Navbar'
-const url = "http://localhost:8000"
+const url = "http://localhost:9000"
 export const user = []
 function Blog(props) {
   const [blog1, setBlog1] = useState("")
   const [blog2, setBlog2] = useState("")
   const farhanBlog1 = async () => {
-    const res = await getBlogById("63565ca0e7f50f49f39084a0")
+    const res = await getBlogById("656a2be24f1047aedf3b7de6")
     setBlog1(res.data.message)
   }
   const farhanBlog2 = async () => {
-    const res = await getBlogById("635658fce7f50f49f3908420")
+    const res = await getBlogById("656a2be24f1047aedf3b7de6")
     setBlog2(res.data.message)
   }
 
@@ -141,6 +141,7 @@ function ShortBlogs(props) {
 
           return (
             <>
+
               <a href={`/blog/${e._id}`}>
 
 
@@ -184,7 +185,7 @@ function ShortBlogs(props) {
 function PopularAuthors(props) {
   const [farhanProf, setFarhanProf] = useState("")
   const farhan = async () => {
-    const res = await getUserById("6356398360be867515164b63")
+    const res = await getUserById("656a28ecaba8ff92230a789d")
     setFarhanProf(res.data.success)
   }
   useEffect(() => {
@@ -245,28 +246,7 @@ export function RightSection() {
     <>
       <div className='sec-2-right'>
         <h3 className='featured mb-5'><span className='backgroundColor'>&nbsp;Top &nbsp;</span>&nbsp;Author</h3>
-        <PopularAuthors />
-        <PopularAuthors />
-        <PopularAuthors />
-
-        <div className='ad text-center center'>
-          <p className='ad-title'>Ad</p>
-          <div className='for-add'>
-            <h6 className='adTitle'>
-              Want To Collaborate Or Suggest Something?
-            </h6>
-            <p className='adDescription'>
-              If someone discovers any bugs or technical concerns, please notify me.
-            </p>
-            <a href={`/profile/6356398360be867515164b63`}>
-              <button className='adBtn'>
-                Connect
-              </button>
-            </a>
-          </div>
-        </div>
-
-
+        
         <div className='categories-section'>
           <h3 className='featured mt-5'><span className='backgroundColor'>&nbsp;Categories&nbsp;</span></h3>
           <table className="table table-borderless mt-4">
@@ -278,16 +258,20 @@ export function RightSection() {
               </tr>
 
               <tr className='border'>
+                <th scope="row categorie-title">Travel</th>
+                <td className='text-right categorie-result'>{catCount.travel}</td>
+              </tr>
+              <tr className='border'>
                 <th scope="row categorie-title">Fashion</th>
                 <td className='text-right categorie-result'>{catCount.fashion}</td>
               </tr>
               <tr className='border'>
-                <th scope="row categorie-title">Javascript</th>
-                <td className='text-right categorie-result'>{catCount.javascript}</td>
-              </tr>
-              <tr className='border'>
                 <th scope="row categorie-title">Business</th>
                 <td className='text-right categorie-result'>{catCount.business}</td>
+              </tr>
+              <tr className='border'>
+                <th scope="row categorie-title">Health</th>
+                <td className='text-right categorie-result'>{catCount.Health}</td>
               </tr>
 
             </tbody>
@@ -323,11 +307,6 @@ export function RightSection() {
                   Travel
                 </button>
               </a>
-              <a href={`/tag/Lifestyle`}>
-                <button className='tag'>
-                  Lifestyle
-                </button>
-              </a>
               <a href={`/tag/Fashion`}>
                 <button className='tag'>
                   Fashion
@@ -346,16 +325,6 @@ export function RightSection() {
               <a href={`/tag/Health`}>
                 <button className='tag'>
                   Health
-                </button>
-              </a>
-              <a href={`/tag/Javascript`}>
-                <button className='tag'>
-                  Javascript
-                </button>
-              </a>
-              <a href={`/tag/Blockchain`}>
-                <button className='tag'>
-                  Blockchain
                 </button>
               </a>
             </div>
