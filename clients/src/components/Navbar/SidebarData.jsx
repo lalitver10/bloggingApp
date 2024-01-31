@@ -14,12 +14,6 @@ import axios from "axios"
 
 export const SidebarData = [
   {
-    title: 'Search',
-    path: '/search',
-    icon: <FaSearch />,
-    cName: 'nav-text'
-  },
-  {
     title: 'Home',
     path: '/',
     icon: <GoHome />,

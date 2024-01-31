@@ -35,7 +35,8 @@ router.get("/popularusers", (req, res) => {
               const userobj= e[i]
             if(userobj.followers.length>=1) popuser.push({"id":userobj._id,"username":userobj.username})
       }
-    res.send(popuser)
+    console.log(popuser)
+    res.json({user:popuser})
     });
   } catch (error) {
     console.log(error);

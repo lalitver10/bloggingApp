@@ -202,7 +202,7 @@ function Blog() {
                     </div>
                     <div>
                       <VscComment className='appreciation-icon' />
-                      <span>10</span>
+                      <span>0</span>
                     </div>
                   </div>
                   <div className='link-bookmark'>

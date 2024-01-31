@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import "./Home.css"
 import image from "../../assets/test.jpg"
 import { categoryCount, getAllBlogs, getBlogById } from '../../apis/Blogs'
-import { usersCount, blogsCount, getUserById, } from '../../apis/users'
+import { usersCount, blogsCount, getUserById,popularusers } from '../../apis/users'
 import { TiSocialFacebook, TiSocialLinkedin, TiSocialTwitter } from "react-icons/ti"
 import { AiOutlineInstagram } from "react-icons/ai"
 import { useEffect, useContext } from 'react'
@@ -18,11 +18,11 @@ function Blog(props) {
   const [blog1, setBlog1] = useState("")
   const [blog2, setBlog2] = useState("")
   const farhanBlog1 = async () => {
-    const res = await getBlogById("656a2be24f1047aedf3b7de6")
+    const res = await getBlogById("656d6dbcf379f01d3099c4bc")
     setBlog1(res.data.message)
   }
   const farhanBlog2 = async () => {
-    const res = await getBlogById("656a2be24f1047aedf3b7de6")
+    const res = await getBlogById("656da3730a223356ba80eb14")
     setBlog2(res.data.message)
   }
 
@@ -182,10 +182,90 @@ function ShortBlogs(props) {
     </>
   )
 }
-function PopularAuthors(props) {
+function PopularAuthors1(props) {
   const [farhanProf, setFarhanProf] = useState("")
   const farhan = async () => {
-    const res = await getUserById("656a28ecaba8ff92230a789d")
+    const res= await popularusers();
+    const res1 = await getUserById("656a28ecaba8ff92230a789d")
+    //console.log("RESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS",res.username);
+    setFarhanProf(res1.data.success)
+  }
+  useEffect(() => {
+    farhan()
+  }, [])
+  return (
+    <>
+      <a href={`/profile/${farhanProf._id}`}>
+        <div className='profile mb-5'>
+          <img className='top-author' src={farhanProf.profilePic} alt="" />
+          <div className='author-info'>
+            <h4 className='authorName'>{farhanProf.username}</h4>
+            <h5 className='designation'>{farhanProf.bio?.slice(0, 60) + "..."}</h5>
+            <div className='authorSocials'>
+              <a href={farhanProf.facebook} target="_blanck">
+                <TiSocialFacebook className='social-icons' />
+              </a>
+              <a href={farhanProf.linkedin} target="_blanck">
+                <TiSocialLinkedin className='social-icons' />
+              </a>
+              <a href={farhanProf.twitter} target="_blanck">
+                <TiSocialTwitter className='social-icons' />
+
+              </a>
+              <a href={farhanProf.instagram} target="_blanck">
+                <AiOutlineInstagram className='social-icons' />
+              </a>
+            </div>
+          </div>
+        </div>
+      </a>
+    </>
+  )
+
+}
+function PopularAuthors2(props) {
+  const [farhanProf, setFarhanProf] = useState("")
+  const farhan = async () => {
+    const res = await getUserById("656b192c4481cd384f1a635d")
+    setFarhanProf(res.data.success)
+  }
+  useEffect(() => {
+    farhan()
+  }, [])
+  return (
+    <>
+      <a href={`/profile/${farhanProf._id}`}>
+        <div className='profile mb-5'>
+          <img className='top-author' src={farhanProf.profilePic} alt="" />
+          <div className='author-info'>
+            <h4 className='authorName'>{farhanProf.username}</h4>
+            <h5 className='designation'>{farhanProf.bio?.slice(0, 60) + "..."}</h5>
+            <div className='authorSocials'>
+              <a href={farhanProf.facebook} target="_blanck">
+                <TiSocialFacebook className='social-icons' />
+              </a>
+              <a href={farhanProf.linkedin} target="_blanck">
+                <TiSocialLinkedin className='social-icons' />
+              </a>
+              <a href={farhanProf.twitter} target="_blanck">
+                <TiSocialTwitter className='social-icons' />
+
+              </a>
+              <a href={farhanProf.instagram} target="_blanck">
+                <AiOutlineInstagram className='social-icons' />
+              </a>
+            </div>
+          </div>
+        </div>
+      </a>
+    </>
+  )
+
+}
+function PopularAuthors3(props) {
+  const [farhanProf, setFarhanProf] = useState("")
+  const farhan = async () => {
+    const res = await getUserById("656b3cc7d40b09b1958b6021")
     setFarhanProf(res.data.success)
   }
   useEffect(() => {
@@ -246,7 +326,9 @@ export function RightSection() {
     <>
       <div className='sec-2-right'>
         <h3 className='featured mb-5'><span className='backgroundColor'>&nbsp;Top &nbsp;</span>&nbsp;Author</h3>
-        
+        <PopularAuthors1 />
+        <PopularAuthors2 />
+        <PopularAuthors3 />
         <div className='categories-section'>
           <h3 className='featured mt-5'><span className='backgroundColor'>&nbsp;Categories&nbsp;</span></h3>
           <table className="table table-borderless mt-4">
@@ -286,7 +368,7 @@ export function RightSection() {
               <p className='updates-des'>Posts</p>
             </div>
             <div className='updates-card card-2'>
-              <h4 className='updates-no'>255</h4>
+              <h4 className='updates-no'>50</h4>
               <p className='updates-des'>Visitors</p>
             </div>
             <div className='updates-card'>

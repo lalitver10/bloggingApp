@@ -22,6 +22,19 @@ export const getUserById = async (id) => {
     console.log(error);
   }
 };
+
+export const popularusers = async () => {
+  try {
+    console.log("Get Called")
+    const res= await axios.get(`${url}/popularusers/`);
+   // console.log(data.data,"DATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+    return res.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
 export const updateUser = async (id, body) => {
   try {
     return await axios.patch(`${url}/updateUser/${id}`, body);
